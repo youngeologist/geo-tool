@@ -72,7 +72,7 @@ def main():
     DepthMode, Skala, Depth_min, Depth_max = show_top_sidebar(df)
     mudlog = load_mudlog(welldata)
     judul = (headerdata['WELLNAME']+" -- Interval ("+str(Depth_min)+" - "+str(Depth_max)+")"+DepthMode+
-            " -- Scale 1:"+str(Skala)+" -- RTE: "+str(RTE)+"m --------- AppByAsepHermawan")
+            " -- Scale 1:"+str(Skala)+" -- RTE: "+str(RTE)+"m [AppByAsepH]")
     Depth_min = int(Depth_min)
     Depth_max = int(Depth_max)
     skala = float(Skala)
