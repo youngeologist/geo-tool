@@ -145,7 +145,7 @@ class LogTemplate:
         #plt.savefig('./asep-03xxx.pdf', bbox_inches='tight')
        
     def format_axis(self): 
-        CurveNm = ('DEPTH','GR','ROP','CAL','PhRes','AttRes','TGas','NEU', 'DEN','DT')
+        CurveNm = ('DEPTH (m)','GR (gAPI)','ROP (m/h)','CAL (in)','PhRes (ohm.m)','AttRes (ohm.m)','TGas (u)','NEU (v/v)', 'DEN (gr/cc)','DT (us/ft)')
         CurveScl = ([0,10],[0,150],[100,0],[5,20],[0.2,200],[0.2,200],[0.2,200],[0.6,0],[1.7,2.7],[140,40])
         CurveClr = ('white','green','black','blue','red', 'blue', 'black','blue', 'red', 'blue')
         
