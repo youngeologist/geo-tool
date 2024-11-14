@@ -64,7 +64,7 @@ def show_top_sidebar(df):
 def main():
     st.sidebar.markdown("<h4 style='text-align: center;'>Asep Hermawan, Nov. 2024</h4>", unsafe_allow_html=True)
     st.sidebar.subheader("WELL DATA", divider=True)
-    welldata = st.sidebar.file_uploader("Upload Preformated XLS well adat file")
+    welldata = st.sidebar.file_uploader("Upload Preformated XLS well data file")
     header = load_header(welldata)
     df = load_lwddata(welldata)
     headerdata = header.iloc[0]
