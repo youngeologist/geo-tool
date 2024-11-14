@@ -11,7 +11,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-welldata = 'asep03-welldata.xls'
+# welldata = 'https://github.com/youngeologist/geo-tool/asep03-welldata.xls'
 @st.cache_data
 def load_header(welldata):
     header = pd.read_excel(welldata, sheet_name='HEADER', engine='xlrd')
@@ -65,6 +65,8 @@ def main():
     st.sidebar.markdown("<h4 style='text-align: center;'>AppByAsepH_Nov2024</h4>", unsafe_allow_html=True)
     st.sidebar.subheader("WELL DATA", divider=True)
     welldata = st.sidebar.file_uploader("Upload Preformated XLS well data file")
+    if welldata is None:
+       welldata = 'https://github.com/youngeologist/geo-tool/asep03-welldata.xls'
     header = load_header(welldata)
     df = load_lwddata(welldata)
     headerdata = header.iloc[0]
