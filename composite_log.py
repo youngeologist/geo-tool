@@ -14,38 +14,38 @@ st.set_page_config(
 welldata = './data/asep03-data.xls'
 @st.cache_data
 def load_header(welldata):
-    header = pd.read_excel(welldata, sheet_name='HEADER')
+    header = pd.read_excel(welldata, sheet_name='HEADER', engine='xlrd')
     return header
 #end_function_load_header
 
 def load_lwddata(welldata):
-    lwd = pd.read_excel(welldata, sheet_name='LOGDATA')
+    lwd = pd.read_excel(welldata, sheet_name='LOGDATA', engine='xlrd')
     df = lwd.fillna(method='ffill')            
     return df 
 #end_function_load_lwddata
 
 def load_mudlog(welldata):
-    mudlog = pd.read_excel(welldata, sheet_name='MUDLOG')
+    mudlog = pd.read_excel(welldata, sheet_name='MUDLOG', engine='xlrd')
     return mudlog
 #end_function_load_mudlog
 
 def load_marker(welldata):
-    marker = pd.read_excel(welldata, sheet_name='MARKER')
+    marker = pd.read_excel(welldata, sheet_name='MARKER', engine='xlrd')
     return marker
 #end_function_load_marker
 
 def load_survey(welldata):
-    survey = pd.read_excel(welldata, sheet_name='SURVEY')
+    survey = pd.read_excel(welldata, sheet_name='SURVEY', engine='xlrd')
     return survey
 #end_function_load_survey
 
 def load_fluid(welldata):
-    fluid = pd.read_excel(welldata, sheet_name='FLUID')
+    fluid = pd.read_excel(welldata, sheet_name='FLUID', engine='xlrd')
     return fluid
 #end_function_load_fluid
 
 def load_gaspeak(welldata):
-    gaspeak = pd.read_excel(welldata, sheet_name='GASPEAK')
+    gaspeak = pd.read_excel(welldata, sheet_name='GASPEAK', engine='xlrd')
     return gaspeak
 #end_function_load_gaspeak
 
