@@ -62,7 +62,7 @@ def show_top_sidebar(df):
 # #end_function_show_top_sidebar
 
 def main():
-    st.sidebar.markdown("<h4 style='text-align: center;'>COMPOSITE LOG VIEWER by Asep Hermawan</h4>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h4 style='text-align: center;'>Asep Hermawan, Nov. 2024</h4>", unsafe_allow_html=True)
     st.sidebar.subheader("E-Log/LWD File", divider=True)
     welldata = st.sidebar.file_uploader("Upload E-Log/LWD file")
     header = load_header(welldata)
