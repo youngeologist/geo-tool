@@ -62,7 +62,7 @@ def show_top_sidebar(df):
 # #end_function_show_top_sidebar
 
 def main():
-    st.sidebar.markdown("<h4 style='text-align: center;'>Asep Hermawan, Nov2024</h4>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h4 style='text-align: center;'>AppByAsepH_Nov2024</h4>", unsafe_allow_html=True)
     st.sidebar.subheader("WELL DATA", divider=True)
     welldata = st.sidebar.file_uploader("Upload Preformated XLS well data file")
     header = load_header(welldata)
@@ -72,7 +72,7 @@ def main():
     DepthMode, Skala, Depth_min, Depth_max = show_top_sidebar(df)
     mudlog = load_mudlog(welldata)
     judul = (headerdata['WELLNAME']+" -- Interval ("+str(Depth_min)+" - "+str(Depth_max)+")"+DepthMode+
-            " -- Scale 1:"+str(Skala)+" -- RTE: "+str(RTE)+"m [AppByAsepH]")
+            " -- Scale 1:"+str(Skala)+" -- RTE: "+str(RTE)+"m")
     Depth_min = int(Depth_min)
     Depth_max = int(Depth_max)
     skala = float(Skala)
