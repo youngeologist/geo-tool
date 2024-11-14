@@ -11,7 +11,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-welldata = './data/asep03-data.xls'
+welldata = './data/asep03-welldata.xls'
 @st.cache_data
 def load_header(welldata):
     header = pd.read_excel(welldata, sheet_name='HEADER', engine='xlrd')
