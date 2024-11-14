@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-import lasio
 import matplotlib.pyplot as plt
 import matplotlib.ticker as tck
 from matplotlib.ticker import (MultipleLocator, FormatStrFormatter, AutoMinorLocator)
