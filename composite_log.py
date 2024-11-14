@@ -66,7 +66,7 @@ def main():
     st.sidebar.subheader("WELL DATA", divider=True)
     welldata = st.sidebar.file_uploader("Upload Preformated XLS well data file")
     if welldata is None:
-       welldata = 'https://github.com/youngeologist/geo-tool/asep03-welldata.xls'
+       welldata = 'asep03-welldata.xls'
     header = load_header(welldata)
     df = load_lwddata(welldata)
     headerdata = header.iloc[0]
