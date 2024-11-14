@@ -11,7 +11,7 @@ AutoMinorLocator)
 import streamlit as st
 import numpy as np
 
-# Class utama LogTemplate
+# Main Class LogTemplate
 class LogTemplate:
     def __init__(self, judul, panjang, lebar, majortick, minortick):
         self.judul = judul
