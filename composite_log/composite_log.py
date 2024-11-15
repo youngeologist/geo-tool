@@ -1,8 +1,8 @@
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
-import matplotlib.ticker as tck
-from matplotlib.ticker import (MultipleLocator, FormatStrFormatter, AutoMinorLocator)
+#import matplotlib.ticker as tck
+#from matplotlib.ticker import (MultipleLocator, FormatStrFormatter, AutoMinorLocator)
 import composite_logtemplates as logs
 
 st.set_page_config(
@@ -81,7 +81,6 @@ def main():
     skala = float(Skala)
     RTE = float(RTE)
    
-
     marker = load_marker(welldata)
     survey = load_survey(welldata)
     fluid = load_fluid(welldata)
