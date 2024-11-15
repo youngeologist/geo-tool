@@ -51,6 +51,7 @@ def load_gaspeak(welldata):
 
 def show_top_sidebar(df):
      #RTE = st.sidebar.text_input("RTE","28.4")
+     st.sidebar.subheader("LOG DISPLAY SETTING", divider=True)
      DepthMode =  st.sidebar.selectbox("Depth MODE", list(['MD','TVD', 'TVDSS']))
      st.sidebar.write("Adjust Scale, Top or Bottom log, if viewer ERROR due to unable in creating large image")
      Skala = st.sidebar.selectbox("Scale", list([1000,500,200]))
