@@ -163,8 +163,8 @@ class LogTemplate:
             self.ax.yaxis.set_minor_locator(MultipleLocator(self.minortick))
             self.ax.minorticks_on()
             if i!= 0:
-               self.ax.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.5)
-               self.ax.grid(b=True, which='major', color='#666666', linestyle='-')
+               self.ax.grid(which='minor', color='#999999', linestyle='-', alpha=0.5)
+               self.ax.grid(which='major', color='#666666', linestyle='-')
 
         #Resistivity log template
         self.ax2.set_xscale('log')
