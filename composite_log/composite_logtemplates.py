@@ -1,4 +1,4 @@
-""
+"""
 Modul : Log template standar
 Asep Hermawan, November 2024
 """
