@@ -1,8 +1,7 @@
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
-#import matplotlib.ticker as tck
-#from matplotlib.ticker import (MultipleLocator, FormatStrFormatter, AutoMinorLocator)
+from PIL import Image
 import composite_logtemplates as logs
 
 st.set_page_config(
