@@ -11,21 +11,21 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-# welldata = 'https://github.com/youngeologist/geo-tool/asep03-welldata.xls'
+
 @st.cache_data
 def load_header(welldata):
     header = pd.read_excel(welldata, sheet_name='HEADER', engine='xlrd')
     return header
 #end_function_load_header
 
-def load_lwddata(welldata):
+def load_logdata(welldata):
     lwd = pd.read_excel(welldata, sheet_name='LOGDATA', engine='xlrd')
     df = lwd.fillna(method='ffill')            
     return df 
-#end_function_load_lwddata
+#end_function_load_logdata
 
 def load_mudlog(welldata):
-    mudlog = pd.read_excel(welldata, sheet_name='MUDLOG', engine='xlrd')
+    mudlog = pd.read_excel(welldata, sheet_name='GASDATA', engine='xlrd')
     return mudlog
 #end_function_load_mudlog
 
@@ -51,7 +51,6 @@ def load_gaspeak(welldata):
 
 def show_top_sidebar(df):
      #RTE = st.sidebar.text_input("RTE","28.4")
-     st.sidebar.subheader("LOG SETTING", divider=True)
      DepthMode =  st.sidebar.selectbox("Depth MODE", list(['MD','TVD', 'TVDSS']))
      st.sidebar.write("Adjust Scale, Top or Bottom log, if viewer ERROR due to unable in creating large image")
      Skala = st.sidebar.selectbox("Scale", list([1000,500,200]))
@@ -67,15 +66,16 @@ def main():
     st.sidebar.subheader("WELL DATA", divider=True)
     welldata = st.sidebar.file_uploader("Upload Preformated XLS well data file")
     if welldata is None:
-       welldata = 'asep03-welldata.xls'
+       welldata = './data/asep03-welldata.xls'
     header = load_header(welldata)
-    df = load_lwddata(welldata)
+    df = load_logdata(welldata)
     headerdata = header.iloc[0]
     RTE = headerdata['RTE']
+    Unit = headerdata['UNIT']
     DepthMode, Skala, Depth_min, Depth_max = show_top_sidebar(df)
     mudlog = load_mudlog(welldata)
     judul = (headerdata['WELLNAME']+" -- Interval ("+str(Depth_min)+" - "+str(Depth_max)+")"+DepthMode+
-            " -- Scale 1:"+str(Skala)+" -- RTE: "+str(RTE)+"m")
+            " -- Scale 1:"+str(Skala)+" -- RTE: "+str(RTE)+Unit)
     Depth_min = int(Depth_min)
     Depth_max = int(Depth_max)
     skala = float(Skala)
@@ -106,6 +106,7 @@ def main():
         
 if __name__ == "__main__":
      main()
+
 
 
 
