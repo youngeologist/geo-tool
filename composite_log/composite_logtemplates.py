@@ -23,7 +23,7 @@ class LogTemplate:
         self.fig = plt.figure(figsize=(lebar, panjang))
         self.fig.set_dpi(75)
         self.fig.suptitle(self.judul, size=10, y=0.045, ha='right')
-        self.fig.canvas.set_window_title('Log Plot')
+        # self.fig.canvas.set_window_title('Log Plot')
 
         # Layout log
         self.ax4 = self.fig.add_axes([0.25, 0.05, 0.1, 0.95])
