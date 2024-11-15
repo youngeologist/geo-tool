@@ -1,4 +1,4 @@
-"""
+""
 Modul : Log template standar
 Asep Hermawan, November 2024
 """
@@ -11,7 +11,7 @@ AutoMinorLocator)
 import streamlit as st
 import numpy as np
 
-# Main Class LogTemplate
+# Class utama LogTemplate
 class LogTemplate:
     def __init__(self, judul, panjang, lebar, majortick, minortick):
         self.judul = judul
@@ -23,7 +23,7 @@ class LogTemplate:
         self.fig = plt.figure(figsize=(lebar, panjang))
         self.fig.set_dpi(75)
         self.fig.suptitle(self.judul, size=10, y=0.045, ha='right')
-        # self.fig.canvas.set_window_title('Log Plot')
+        self.fig.canvas.set_window_title('Log Plot')
 
         # Layout log
         self.ax4 = self.fig.add_axes([0.25, 0.05, 0.1, 0.95])
@@ -82,8 +82,8 @@ class LogTemplate:
         self.ax1.plot(self.gr, self.depth, color='green', linewidth=0.75)
         self.ax12.plot(self.rop, self.depth, color='black', linewidth=0.5)
         self.ax13.plot(self.cal, self.depth, color='blue', linewidth=0.5, linestyle="--")
-        self.ax2.plot(self.resSh, self.depth, color='red', linewidth=0.75)
-        self.ax22.plot(self.resDp, self.depth, color='blue', linewidth=0.75)
+        self.ax2.plot(self.resSh, self.depth, color='blue', linewidth=0.75)
+        self.ax22.plot(self.resDp, self.depth, color='red', linewidth=0.75)
         self.ax3.plot(self.neu, self.depth, color='blue', linewidth=0.75, linestyle='--')
         self.ax32.plot(self.den, self.depth, color='red', linewidth=0.75)
         
@@ -145,9 +145,9 @@ class LogTemplate:
         #plt.savefig('./asep-03xxx.pdf', bbox_inches='tight')
        
     def format_axis(self): 
-        CurveNm = ('DEPTH (m)','GR (gAPI)','ROP (m/h)','CAL (in)','Ph.Res (ohm.m)','Att.Res (ohm.m)','TGas (u)','NEU (v/v)', 'DEN (gr/cc)','DT (us/ft)')
+        CurveNm = ('DEPTH','GR','ROP','CAL','ResSh','ResDp','TGas','NEU', 'DEN','DT')
         CurveScl = ([0,10],[0,150],[100,0],[5,20],[0.2,200],[0.2,200],[0.2,200],[0.6,0],[1.7,2.7],[140,40])
-        CurveClr = ('white','green','black','blue','red', 'blue', 'black','blue', 'red', 'blue')
+        CurveClr = ('white','green','black','blue','blue', 'red', 'black','blue', 'red', 'blue')
         
         for i, self.ax in enumerate(self.fig.axes):
             self.ax.set_xlim(CurveScl[i])
@@ -163,8 +163,8 @@ class LogTemplate:
             self.ax.yaxis.set_minor_locator(MultipleLocator(self.minortick))
             self.ax.minorticks_on()
             if i!= 0:
-               self.ax.grid(which='minor', color='#999999', linestyle='-', alpha=0.5)
-               self.ax.grid(which='major', color='#666666', linestyle='-')
+               self.ax.grid(b=True, which='minor', color='#999999', linestyle='-', alpha=0.5)
+               self.ax.grid(b=True, which='major', color='#666666', linestyle='-')
 
         #Resistivity log template
         self.ax2.set_xscale('log')
