@@ -1,16 +1,15 @@
 """
-Modul : Log template standar
+Modul : Composite Log template
 Asep Hermawan, November 2024
 """
 import matplotlib.pyplot as plt
 import matplotlib.ticker as tck
 from matplotlib.patches import Rectangle
-from matplotlib.ticker import (MultipleLocator, LogLocator, FormatStrFormatter,
-AutoMinorLocator)
+from matplotlib.ticker import (MultipleLocator, LogLocator, FormatStrFormatter, AutoMinorLocator)
 import streamlit as st
 import numpy as np
 
-# Class utama LogTemplate
+# Main Class of LogTemplate
 class LogTemplate:
     def __init__(self, judul, panjang, lebar, majortick, minortick):
         self.judul = judul
@@ -22,8 +21,7 @@ class LogTemplate:
         self.fig = plt.figure(figsize=(lebar, panjang))
         self.fig.set_dpi(75)
         self.fig.suptitle(self.judul, size=10, y=0.045, ha='right')
-        #self.fig.canvas.set_window_title('Log Plot')
-
+        
         # Layout log
         self.ax4 = self.fig.add_axes([0.25, 0.05, 0.1, 0.95])
         self.ax1 = self.fig.add_axes([0.05, 0.05, 0.2, 0.95])
@@ -33,7 +31,7 @@ class LogTemplate:
         self.ax22 = self.ax2.twiny()
         self.ax23 = self.ax2.twiny()
         self.ax3 = self.fig.add_axes([0.55, 0.05, 0.2, 0.95])
-        # Density/Neutron dalam satu kolom
+        # Density/Neutron in same column
         self.ax32 = self.ax3.twiny()
 
     def show_triplecombo_composite(self, min, max, RTE, DepthMode, df_lwd, df_mudlog, df_marker, df_survey, df_fluid, df_gaspeak):
@@ -50,13 +48,16 @@ class LogTemplate:
         self.resDp = df_lwd['RESDP']
         self.neu = df_lwd['NEU']
         self.den = df_lwd['DEN']
-        #self.den_syn = (0.6-df_lwd['NEU'])/0.6+1.7
-        self.den_syn = (0.6-self.neu)/0.6+1.7
-
+        # create synthetic density curve for density-neutron x-ove
+        self.den_syn = (0.6-df_lwd['NEU'])/0.6+1.7
+        # self.den_syn = (0.6-self.neu)/0.6+1.7
+        
+        # Load mudlog data
         self.mudlog_depth = df_mudlog['DEPTH']
         self.mudlog_tvd = df_mudlog['TVD']
         self.tgas = df_mudlog['TGAS']
-
+        
+        # Load marker data
         self.marker = df_marker['MARKER']
         self.depth_marker = df_marker['MD']
         self.tvd_marker = df_marker['TVD']
@@ -75,7 +76,6 @@ class LogTemplate:
            self.depth = self.tvd - self.rte
            self.mudlog_depth = self.mudlog_tvd - self.rte
            self.depth_marker = self.tvd_marker - self.rte
-                 
 
         # generate log plot
         self.ax1.plot(self.gr, self.depth, color='green', linewidth=0.75)
@@ -86,15 +86,18 @@ class LogTemplate:
         self.ax22.plot(self.resDp, self.depth, color='red', linewidth=0.75)
         self.ax3.plot(self.neu, self.depth, color='blue', linewidth=0.75, linestyle='--')
         self.ax32.plot(self.den, self.depth, color='red', linewidth=0.75)
-        self.ax32.plot(self.den_syn, self.depth, color='blue', linewidth=0.75)
+        self.ax32.plot(self.den_syn, self.depth, color='blue', linewidth=0.75, alpha=0)
+        
+        # create density-neutron x-over
         self.ax32.fill_between(
                                self.depth, self.den_syn, self.den, 
                                where=(self.den_syn > self.den), 
                                color='yellow', interpolate=True
                                )
         
-        # generate mudlog data
+        # generate Total Gas data
         self.ax23.plot(self.tgas, self.mudlog_depth, color='black', linewidth=0.75)
+        
         # generate marker
         self.ax2.hlines(self.depth_marker, xmin=0.2, xmax=2000, color='red', linewidth=1) 
         for i, row in df_marker.iterrows():
@@ -147,16 +150,18 @@ class LogTemplate:
                   self.ax4.add_patch(Rectangle((0, row['TVDSSTOP']), 10, row['THICKTVD'], 
                                       color = row['COLOR'], fill=True, alpha=0.8))      
         
-        # Format output log
+        # Format log output & display log
         self.format_axis()
         st.pyplot(self.fig)
-        #plt.savefig('./asep-03xxx.pdf', bbox_inches='tight')
+        # plt.savefig('./asep-03xxx.pdf', bbox_inches='tight')
        
     def format_axis(self): 
+        # Initiate log format
         CurveNm = ('DEPTH','GR','ROP','CAL','ResSh','ResDp','TGas','NEU', 'DEN','DT')
         CurveScl = ([0,10],[0,150],[100,0],[5,20],[0.2,200],[0.2,200],[0.2,200],[0.6,0],[1.7,2.7],[140,40])
         CurveClr = ('white','green','black','blue','blue', 'red', 'black','blue', 'red', 'blue')
         
+        # Generate format for all chart
         for i, self.ax in enumerate(self.fig.axes):
             self.ax.set_xlim(CurveScl[i])
             self.ax.set_xticks(CurveScl[i])
