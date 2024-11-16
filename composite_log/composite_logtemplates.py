@@ -86,7 +86,9 @@ class LogTemplate:
         self.ax22.plot(self.resDp, self.depth, color='red', linewidth=0.75)
         self.ax3.plot(self.neu, self.depth, color='blue', linewidth=0.75, linestyle='--')
         self.ax32.plot(self.den, self.depth, color='red', linewidth=0.75)
-        self.ax32.plot(self.den_syn, self.depth, color='blue', linewidth=0.75, alpha=0)
+        
+        # make this chart invisible
+        self.ax32.plot(self.den_syn, self.depth, color='blue', linewidth=0.75, alpha=0) 
         
         # create density-neutron x-over
         self.ax32.fill_between(
