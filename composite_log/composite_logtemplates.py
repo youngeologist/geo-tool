@@ -84,12 +84,9 @@ class LogTemplate:
         self.ax13.plot(self.cal, self.depth, color='blue', linewidth=0.5, linestyle="--")
         self.ax2.plot(self.resSh, self.depth, color='blue', linewidth=0.75)
         self.ax22.plot(self.resDp, self.depth, color='red', linewidth=0.75)
-        self.ax3.plot(self.neu, self.depth, color='blue', linewidth=0.75, linestyle='--')
         self.ax32.plot(self.den, self.depth, color='red', linewidth=0.75)
-        
         # make this chart invisible
         self.ax32.plot(self.den_syn, self.depth, color='blue', linewidth=0.75, alpha=0) 
-        
         # create density-neutron x-over
         self.ax32.fill_betweenx(
                                self.depth, self.den_syn, self.den, 
@@ -97,6 +94,8 @@ class LogTemplate:
                                color='yellow', interpolate=True,
                                alpha=0.8,
                                )
+        # Show neutron curve
+        self.ax3.plot(self.neu, self.depth, color='blue', linewidth=0.75, linestyle='--')
         
         # generate Total Gas data
         self.ax23.plot(self.tgas, self.mudlog_depth, color='black', linewidth=0.75)
