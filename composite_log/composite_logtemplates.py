@@ -84,18 +84,18 @@ class LogTemplate:
         self.ax13.plot(self.cal, self.depth, color='blue', linewidth=0.5, linestyle="--")
         self.ax2.plot(self.resSh, self.depth, color='blue', linewidth=0.75)
         self.ax22.plot(self.resDp, self.depth, color='red', linewidth=0.75)
-        self.ax32.plot(self.den, self.depth, color='red', linewidth=0.75)
+        self.ax3.plot(self.den, self.depth, color='red', linewidth=0.75)
         # make this chart invisible
-        self.ax32.plot(self.den_syn, self.depth, color='blue', linewidth=0.75, alpha=0) 
+        self.ax3.plot(self.den_syn, self.depth, color='blue', linewidth=0.1, alpha=0) 
         # create density-neutron x-over
-        self.ax32.fill_betweenx(
+        self.ax3.fill_betweenx(
                                self.depth, self.den_syn, self.den, 
                                where=(self.den_syn > self.den), 
                                color='yellow', interpolate=True,
                                alpha=0.8,
                                )
         # Show neutron curve
-        self.ax3.plot(self.neu, self.depth, color='blue', linewidth=0.75, linestyle='--')
+        self.ax32.plot(self.neu, self.depth, color='blue', linewidth=0.75, linestyle='--')
         
         # generate Total Gas data
         self.ax23.plot(self.tgas, self.mudlog_depth, color='black', linewidth=0.75)
@@ -159,9 +159,9 @@ class LogTemplate:
        
     def format_axis(self): 
         # Initiate log format
-        CurveNm = ('DEPTH','GR','ROP','CAL','ResSh','ResDp','TGas','NEU', 'DEN','DT')
-        CurveScl = ([0,10],[0,150],[100,0],[5,20],[0.2,200],[0.2,200],[0.2,200],[0.6,0],[1.7,2.7],[140,40])
-        CurveClr = ('white','green','black','blue','blue', 'red', 'black','blue', 'red', 'blue')
+        CurveNm = ('DEPTH','GR','ROP','CAL','ResSh','ResDp','TGas','DEN','NEU','DT')
+        CurveScl = ([0,10],[0,150],[100,0],[5,20],[0.2,200],[0.2,200],[0.2,200],[1.7,2.7],[0.6,0],[140,40])
+        CurveClr = ('white','green','black','blue','blue', 'red', 'black','red','blue','blue')
         
         # Generate format for all chart
         for i, self.ax in enumerate(self.fig.axes):
