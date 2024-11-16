@@ -94,7 +94,7 @@ class LogTemplate:
         self.ax32.fill_between(
                                self.depth, self.den_syn, self.den, 
                                where=(self.den_syn > self.den), 
-                               color='y', interpolate=True
+                               color='yellow', interpolate=True,
                                )
         
         # generate Total Gas data
