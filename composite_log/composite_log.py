@@ -67,7 +67,7 @@ def show_top_sidebar(df):
 # end_function_show_top_sidebar
 
 def main():
-    image = Image.open('./data/geostrat100.png')
+    image = Image.open('./composite_log/geostrat100.png')
     st.sidebar.image(image)
     
     st.sidebar.subheader("WELL DATA", divider=True)
