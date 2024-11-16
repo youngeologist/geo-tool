@@ -95,6 +95,7 @@ class LogTemplate:
                                self.depth, self.den_syn, self.den, 
                                where=(self.den_syn > self.den), 
                                color='yellow', interpolate=True,
+                               alpha=0.8,
                                )
         
         # generate Total Gas data
