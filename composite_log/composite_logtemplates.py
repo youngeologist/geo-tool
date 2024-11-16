@@ -117,13 +117,13 @@ class LogTemplate:
         for i, row in df_survey.iterrows():
             if self.mode == 'MD':
                if row['MD'] > self.top and row['MD'] < self.bottom:
-                  self.ax32.text(row['XPLOT'], row['MD'], row['TEXT1']+'\n'+row['TEXT2']+'\n'+row['TEXT3'], color='black', fontsize=5) 
+                  self.ax3.text(row['XPLOT'], row['MD'], row['TEXT1']+'\n'+row['TEXT2']+'\n'+row['TEXT3'], color='black', fontsize=5) 
             elif self.mode == 'TVD':
                if row['TVD'] > self.top and row['TVD'] < self.bottom:
-                  self.ax32.text(row['XPLOT'], row['TVD'], row['TEXT1']+'\n'+row['TEXT2']+'\n'+row['TEXT3'], color='black', fontsize=5)
+                  self.ax3.text(row['XPLOT'], row['TVD'], row['TEXT1']+'\n'+row['TEXT2']+'\n'+row['TEXT3'], color='black', fontsize=5)
             else:
                if row['TVDSS'] > self.top and row['TVDSS'] < self.bottom:
-                  self.ax32.text(row['XPLOT'], row['TVDSS'], row['TEXT1']+'\n'+row['TEXT2']+'\n'+row['TEXT3'], color='black', fontsize=5)
+                  self.ax3.text(row['XPLOT'], row['TVDSS'], row['TEXT1']+'\n'+row['TEXT2']+'\n'+row['TEXT3'], color='black', fontsize=5)
         
         # generate gas peak
         for i, row in df_gaspeak.iterrows():
