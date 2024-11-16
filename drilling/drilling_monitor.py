@@ -33,7 +33,7 @@ def show_top_sidebar(df):
 # #end_function_show_top_sidebar
 
 def main():
-    image = Image.open('geostrat100.png')
+    image = Image.open('./data/geostrat100.png')
     st.sidebar.image(image)
 
     st.sidebar.subheader("DRILLING TIME DATA", divider=True)
