@@ -1,3 +1,9 @@
+'''
+Main Program
+Composite Log Viewer
+Asep Hermawan, Nov 2024
+'''
+
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -15,41 +21,40 @@ st.set_page_config(
 def load_header(welldata):
     header = pd.read_excel(welldata, sheet_name='HEADER', engine='xlrd')
     return header
-#end_function_load_header
+# end_function_load_header
 
 def load_logdata(welldata):
     lwd = pd.read_excel(welldata, sheet_name='LOGDATA', engine='xlrd')
     df = lwd.fillna(method='ffill')            
     return df 
-#end_function_load_logdata
+# end_function_load_logdata
 
 def load_mudlog(welldata):
     mudlog = pd.read_excel(welldata, sheet_name='GASDATA', engine='xlrd')
     return mudlog
-#end_function_load_mudlog
+# end_function_load_mudlog
 
 def load_marker(welldata):
     marker = pd.read_excel(welldata, sheet_name='MARKER', engine='xlrd')
     return marker
-#end_function_load_marker
+# end_function_load_marker
 
 def load_survey(welldata):
     survey = pd.read_excel(welldata, sheet_name='SURVEY', engine='xlrd')
     return survey
-#end_function_load_survey
+# end_function_load_survey
 
 def load_fluid(welldata):
     fluid = pd.read_excel(welldata, sheet_name='FLUID', engine='xlrd')
     return fluid
-#end_function_load_fluid
+# end_function_load_fluid
 
 def load_gaspeak(welldata):
     gaspeak = pd.read_excel(welldata, sheet_name='GASPEAK', engine='xlrd')
     return gaspeak
-#end_function_load_gaspeak
+# end_function_load_gaspeak
 
 def show_top_sidebar(df):
-     #RTE = st.sidebar.text_input("RTE","28.4")
      st.sidebar.subheader("LOG DISPLAY SETTING", divider=True)
      DepthMode =  st.sidebar.selectbox("Depth MODE", list(['MD','TVD', 'TVDSS']))
      st.sidebar.write("Adjust Scale, Top or Bottom log, if viewer ERROR due to unable in creating large image")
@@ -59,21 +64,25 @@ def show_top_sidebar(df):
      Depth_min = st.sidebar.text_input("Top", min)
      Depth_max = st.sidebar.text_input("Bottom", max)
      return DepthMode, Skala, Depth_min, Depth_max
-# #end_function_show_top_sidebar
+# end_function_show_top_sidebar
 
 def main():
     image = Image.open('./composite_log/geostrat100.png')
     st.sidebar.image(image)
-    # st.sidebar.markdown("<h4 style='text-align: center;'>AppByAsepH_Nov2024</h4>", unsafe_allow_html=True)
+    
     st.sidebar.subheader("WELL DATA", divider=True)
     welldata = st.sidebar.file_uploader("Upload Preformated XLS well data file")
     if welldata is None:
        welldata = './data/asep03-welldata.xls'
+    
+    # Read welldata file 
     header = load_header(welldata)
     df = load_logdata(welldata)
     headerdata = header.iloc[0]
     RTE = headerdata['RTE']
     Unit = headerdata['UNIT']
+    
+    # Show sidebar
     DepthMode, Skala, Depth_min, Depth_max = show_top_sidebar(df)
     mudlog = load_mudlog(welldata)
     judul = (headerdata['WELLNAME']+" -- Interval ("+str(Depth_min)+" - "+str(Depth_max)+")"+DepthMode+
@@ -87,7 +96,8 @@ def main():
     survey = load_survey(welldata)
     fluid = load_fluid(welldata)
     gaspeak = load_gaspeak(welldata)
-
+    
+    # Calculate length of chart in Inch based on scale of Cm 
     Depth_cm = (Depth_max - Depth_min)*100
     Log_length_cm = Depth_cm/skala
     Log_length_in = Log_length_cm/2.4
@@ -97,6 +107,7 @@ def main():
     majortick = 50
     minortick = 10
     
+    # Show main chart 
     st.markdown("<h1 style='text-align: center;'>WELL COMPOSITE LOG</h1>", unsafe_allow_html=True)
     st.markdown(f"<h2 style='text-align: center;'>{headerdata['WELLNAME']}</h2>", unsafe_allow_html=True)
     st.markdown(f"<h3 style='text-align: center;'>Field: {headerdata['FIELD']}</h3>", unsafe_allow_html=True)
