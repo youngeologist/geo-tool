@@ -39,7 +39,7 @@ def main():
     st.sidebar.subheader("DRILLING TIME DATA", divider=True)
     welldata = st.sidebar.file_uploader("Upload XLS file with TIME data at the first column. Data header at the first row only")
     if welldata is None:
-       welldata = 'drilling_data.xls'
+       welldata = './data/drilling_data.xls'
     
     df = load_drillingdata(welldata)
     timecolumn = df.columns[0]
