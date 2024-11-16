@@ -91,7 +91,7 @@ class LogTemplate:
         self.ax32.plot(self.den_syn, self.depth, color='blue', linewidth=0.75, alpha=0) 
         
         # create density-neutron x-over
-        self.ax32.fill_between(
+        self.ax32.fill_betweenx(
                                self.depth, self.den_syn, self.den, 
                                where=(self.den_syn > self.den), 
                                color='yellow', interpolate=True,
