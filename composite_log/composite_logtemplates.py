@@ -90,9 +90,9 @@ class LogTemplate:
         # create density-neutron x-over
         self.ax3.fill_betweenx(
                                self.depth, self.den_syn, self.den, 
-                               where=(self.den_syn > self.den), 
+                               where=((self.Den < self.Den_syn) & (self.Den > 1.7)),  
                                color='yellow', interpolate=True,
-                               alpha=0.8,
+                               alpha=0.7,
                                )
         # Show neutron curve
         self.ax32.plot(self.neu, self.depth, color='blue', linewidth=0.75, linestyle='--')
