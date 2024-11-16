@@ -2,7 +2,6 @@
 Modul : Log template standar
 Asep Hermawan, November 2024
 """
-
 import matplotlib.pyplot as plt
 import matplotlib.ticker as tck
 from matplotlib.patches import Rectangle
@@ -23,7 +22,7 @@ class LogTemplate:
         self.fig = plt.figure(figsize=(lebar, panjang))
         self.fig.set_dpi(75)
         self.fig.suptitle(self.judul, size=10, y=0.045, ha='right')
-        # self.fig.canvas.set_window_title('Log Plot')
+        #self.fig.canvas.set_window_title('Log Plot')
 
         # Layout log
         self.ax4 = self.fig.add_axes([0.25, 0.05, 0.1, 0.95])
@@ -51,6 +50,8 @@ class LogTemplate:
         self.resDp = df_lwd['RESDP']
         self.neu = df_lwd['NEU']
         self.den = df_lwd['DEN']
+        #self.den_syn = (0.6-df_lwd['NEU'])/0.6+1.7
+        self.den_syn = (0.6-self.neu)/0.6+1.7
 
         self.mudlog_depth = df_mudlog['DEPTH']
         self.mudlog_tvd = df_mudlog['TVD']
@@ -74,21 +75,25 @@ class LogTemplate:
            self.depth = self.tvd - self.rte
            self.mudlog_depth = self.mudlog_tvd - self.rte
            self.depth_marker = self.tvd_marker - self.rte
-            
-        # Format output log
-        self.format_axis()
+                 
 
         # generate log plot
         self.ax1.plot(self.gr, self.depth, color='green', linewidth=0.75)
+        #self.ax1.fill_between(self.depth, self.gr, 75, where=(self.gr < 75), color='yellow', interpolate=True, alpha=0.5)
         self.ax12.plot(self.rop, self.depth, color='black', linewidth=0.5)
         self.ax13.plot(self.cal, self.depth, color='blue', linewidth=0.5, linestyle="--")
         self.ax2.plot(self.resSh, self.depth, color='blue', linewidth=0.75)
         self.ax22.plot(self.resDp, self.depth, color='red', linewidth=0.75)
         self.ax3.plot(self.neu, self.depth, color='blue', linewidth=0.75, linestyle='--')
         self.ax32.plot(self.den, self.depth, color='red', linewidth=0.75)
+        self.ax32.plot(self.den_syn, self.depth, color='blue', linewidth=0.75)
+        self.ax32.fill_between(
+                               self.depth, self.den_syn, self.den, 
+                               where=(self.den_syn > self.den), 
+                               color='yellow', interpolate=True
+                               )
         
         # generate mudlog data
-        
         self.ax23.plot(self.tgas, self.mudlog_depth, color='black', linewidth=0.75)
         # generate marker
         self.ax2.hlines(self.depth_marker, xmin=0.2, xmax=2000, color='red', linewidth=1) 
@@ -141,6 +146,9 @@ class LogTemplate:
                if row['TVDSSTOP'] > self.top and row['TVDSSTOP'] < self.bottom:
                   self.ax4.add_patch(Rectangle((0, row['TVDSSTOP']), 10, row['THICKTVD'], 
                                       color = row['COLOR'], fill=True, alpha=0.8))      
+        
+        # Format output log
+        self.format_axis()
         st.pyplot(self.fig)
         #plt.savefig('./asep-03xxx.pdf', bbox_inches='tight')
        
