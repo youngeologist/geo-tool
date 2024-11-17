@@ -2,7 +2,7 @@
 # Asep Hermawan
 # November 2024
 
-from four_wellcorrelation import Korelasi
+from correlation import Korelasi
 import pandas as pd
 import streamlit as st
 from PIL import Image
