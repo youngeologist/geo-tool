@@ -21,7 +21,7 @@ def load_data(welldata):
 def main():
     # st.header("LOT Chart")
     ChartTitle ="ASEP-01 8-1/2\" LOT Chart"
-    image = Image.open('geostrat100.png')
+    image = Image.open('./data/geostrat100.png')
     st.sidebar.image(image)
 
     welldata = st.sidebar.file_uploader("Upload LOT/FIT data (XLS file only)")
