@@ -59,7 +59,7 @@ def flat_depth(marker, marker1, marker2, marker3, marker4):
 #end_function_flat_depth
 
 def main():
-    image = Image.open('geostrat100.png')
+    image = Image.open('./data/geostrat100.png')
     st.sidebar.image(image)
     # read log data
     welldata01 = st.sidebar.file_uploader("Upload Well-1 file")
