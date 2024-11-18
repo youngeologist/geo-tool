@@ -107,22 +107,35 @@ def main():
     merged_marker = pd.concat([add_marker, merged_marker2], ignore_index=True)
     #------------------------
     skala = 1000
-    mindepth = 450
+    min = 100
+    max = 600
+    FillGR = 'NO'
+    ShBaseLine = 75
     #------------------------
+    skala = st.sidebar.selectbox("Set Scale", list([1000,500,200]))
+    mindepth = st.sidebar.text_input("Top", min)
+    maxdepth = st.sidebar.text_input("Bottom", max)
+    mindepth = int(mindepth)  
+    maxdepth = int(maxdepth)
+    skala = int(skala) 
 
-    #mindepth = st.sidebar.text_input("Top", min)
+    if maxdepth <= mindepth :  
+       maxdepth = mindepth + 500
+       st.write('Bottom must be greater than Top')
+
     flatmarker = st.sidebar.selectbox("Flat log on marker", list(merged_marker['MARKER']))
-    
-    #mindepth = int(mindepth)    
-    maxdepth = mindepth + 1000
+    FillGR = st.sidebar.selectbox("Fill GR below Shale Base Line?", list(['NO','YES']))
+    ShaleBaseLine = st.sidebar.text_input("Shale Base Line", ShBaseLine)
+    ShaleBaseLine = int(ShaleBaseLine)
+
     Depth_cm = (maxdepth - mindepth)*100
     Log_length_cm = Depth_cm/skala
     Log_length_in = Log_length_cm/2.4
 
     panjang = Log_length_in
     lebar = 10
-    majortick = 100
-    minortick = 10
+    majortick = 50
+    minortick = 5
 
     if flatmarker =='WELL DEPTH' :
        delta1 = 0
@@ -132,10 +145,10 @@ def main():
        delta1, delta2, delta3 = flat_depth(flatmarker, marker1, marker2, marker3, marker4)
 
     korelasi = Korelasi(panjang,lebar,'Marker Correlation', mindepth, maxdepth, majortick, minortick)
-    korelasi.mainwell(wellname1['WELLNAME'], mindepth, maxdepth, welldata1, marker1)
-    korelasi.secondwell(wellname2['WELLNAME'], mindepth, maxdepth, delta1, welldata2, marker2)
-    korelasi.thirdwell(wellname3['WELLNAME'], mindepth, maxdepth, delta2, welldata3, marker3)
-    korelasi.fourthwell(wellname4['WELLNAME'], mindepth, maxdepth, delta3, welldata4, marker4)
+    korelasi.mainwell(wellname1['WELLNAME'], mindepth, maxdepth, welldata1, marker1, FillGR, ShaleBaseLine)
+    korelasi.secondwell(wellname2['WELLNAME'], mindepth, maxdepth, delta1, welldata2, marker2, FillGR, ShaleBaseLine)
+    korelasi.thirdwell(wellname3['WELLNAME'], mindepth, maxdepth, delta2, welldata3, marker3, FillGR, ShaleBaseLine)
+    korelasi.fourthwell(wellname4['WELLNAME'], mindepth, maxdepth, delta3, welldata4, marker4, FillGR, ShaleBaseLine)
     lines1 = create_correlation(marker1, marker2, 0, delta1)
     lines2 = create_correlation(marker2, marker3, delta1, delta2)
     lines3 = create_correlation(marker3, marker4, delta2, delta3)
@@ -143,5 +156,3 @@ def main():
     
 if __name__ == "__main__":
      main()
-
-
