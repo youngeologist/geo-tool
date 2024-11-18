@@ -69,15 +69,23 @@ class Korelasi:
             self.ax.set_ylim(self.top, self.bottom)
             self.ax.yaxis.set_major_locator(MultipleLocator(self.majortick))
             self.ax.minorticks_on()
-            self.ax.grid(which='minor', color='#999999', linestyle='-', alpha=0.2)
-            self.ax.grid(which='major', color='#666666', linestyle='-')
+            self.ax.yaxis.grid(which='minor', color='#666666', linestyle='-', alpha=0.5)
+            self.ax.yaxis.grid(which='major', color='#333333', linestyle='-')
             self.ax.invert_yaxis()
             j+= 1
             if j == 5:
                j = 0
-            
+        # hide grid for depth track
+        self.ax10.yaxis.grid(which='minor', linestyle='')
+        self.ax10.yaxis.grid(which='major', linestyle='')
+        self.ax20.yaxis.grid(which='minor', linestyle='')
+        self.ax20.yaxis.grid(which='major', linestyle='')
+        self.ax30.yaxis.grid(which='minor', linestyle='')
+        self.ax30.yaxis.grid(which='major', linestyle='')
+        self.ax40.yaxis.grid(which='minor', linestyle='')
+        self.ax40.yaxis.grid(which='major', linestyle='') 
         
-    def mainwell(self, WellName, top, bottom, df_log, df_marker):
+    def mainwell(self, WellName, top, bottom, df_log, df_marker, FillGR, ShBaseLine):
         self.top = top
         self.bottom = bottom  
         self.WellName = WellName
@@ -98,8 +106,9 @@ class Korelasi:
         self.ax13.set_yticklabels([])
         
         # generate log plot
-        self.ax11.plot(self.GR, self.depth, color='green', linewidth=0.7) 
-        # self.ax11.fill_betweenx(self.depth, self.GR, 75, where=self.GR < 75, facecolor='yellow')
+        self.ax11.plot(self.GR, self.depth, color='green', linewidth=0.7)
+        if FillGR=='YES': 
+           self.ax11.fill_betweenx(self.depth, self.GR, ShBaseLine, where=self.GR < ShBaseLine, facecolor='yellow')
         self.ax12.plot(self.Res, self.depth, color='black', linewidth=0.7)
         self.ax13.plot(self.Den, self.depth, color='red', linewidth=0.7)
         self.ax13.plot(self.Den_syn, self.depth, color='blue', linewidth=0.1, alpha=0)
@@ -119,7 +128,7 @@ class Korelasi:
             if row['TVDSS'] > self.top and row['TVDSS'] < self.bottom:
                   self.ax12.text(0.3, row['TVDSS']-1, row['MARKER'], color='red', fontsize=self.fontMarkerName)
 
-    def secondwell(self, WellName, top, bottom, delta, df_log, df_marker):
+    def secondwell(self, WellName, top, bottom, delta, df_log, df_marker, FillGR, ShBaseLine):
         self.top = top
         self.bottom = bottom
         self.WellName = WellName
@@ -152,7 +161,8 @@ class Korelasi:
                 
         # generate log plot
         self.ax21.plot(self.GR, self.depth, color='green', linewidth=0.7) 
-        # self.ax21.fill_betweenx(self.depth, self.GR, 75, where=self.GR < 75, facecolor='yellow')
+        if FillGR=='YES': 
+           self.ax21.fill_betweenx(self.depth, self.GR, ShBaseLine, where=self.GR < ShBaseLine, facecolor='yellow')
         self.ax22.plot(self.Res, self.depth, color='black', linewidth=0.7)
         self.ax23.plot(self.Den, self.depth, color='red', linewidth=0.7)
         self.ax23.plot(self.Den_syn, self.depth, color='blue', linewidth=0.1, alpha=0)
@@ -172,7 +182,7 @@ class Korelasi:
             if row['TVDSS'] > self.top+delta and row['TVDSS'] < self.bottom+delta:
                   self.ax22.text(0.3, row['TVDSS']-1, row['MARKER'], color='red', fontsize=self.fontMarkerName)
 
-    def thirdwell(self, WellName, top, bottom, delta, df_log, df_marker):
+    def thirdwell(self, WellName, top, bottom, delta, df_log, df_marker, FillGR, ShBaseLine):
         self.top = top
         self.bottom = bottom
         self.WellName = WellName
@@ -205,7 +215,8 @@ class Korelasi:
                
         # generate log plot
         self.ax31.plot(self.GR, self.depth, color='green', linewidth=0.7) 
-        # self.ax31.fill_betweenx(self.depth, self.GR, 75, where=self.GR < 75, facecolor='yellow')
+        if FillGR=='YES':
+           self.ax31.fill_betweenx(self.depth, self.GR, ShBaseLine, where=self.GR < ShBaseLine, facecolor='yellow')
         self.ax32.plot(self.Res, self.depth, color='black', linewidth=0.7)
         self.ax33.plot(self.Den, self.depth, color='red', linewidth=0.7)
         self.ax33.plot(self.Den_syn, self.depth, color='blue', linewidth=0.1, alpha=0)
@@ -226,7 +237,7 @@ class Korelasi:
                   self.ax32.text(0.3, row['TVDSS']-1, row['MARKER'], color='red', fontsize=self.fontMarkerName)
     #end_function_thirdwell
 
-    def fourthwell(self, WellName, top, bottom, delta, df_log, df_marker):
+    def fourthwell(self, WellName, top, bottom, delta, df_log, df_marker, FillGR, ShBaseLine):
         self.top = top
         self.bottom = bottom
         self.WellName = WellName
@@ -259,7 +270,8 @@ class Korelasi:
         
         # generate log plot
         self.ax41.plot(self.GR, self.depth, color='green', linewidth=0.7) 
-        # self.ax31.fill_betweenx(self.depth, self.GR, 75, where=self.GR < 75, facecolor='yellow')
+        if FillGR=='YES':
+           self.ax41.fill_betweenx(self.depth, self.GR, ShBaseLine, where=self.GR < ShBaseLine, facecolor='yellow')
         self.ax42.plot(self.Res, self.depth, color='black', linewidth=0.7)
         self.ax43.plot(self.Den, self.depth, color='red', linewidth=0.7)
         self.ax43.plot(self.Den_syn, self.depth, color='blue', linewidth=0.1, alpha=0)
