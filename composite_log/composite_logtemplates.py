@@ -160,7 +160,7 @@ class LogTemplate:
     def format_axis(self): 
         # Initiate log format
         CurveNm = ('DEPTH','GR','ROP','CAL','ResSh','ResDp','TGas','DEN','NEU','DT')
-        CurveScl = ([0,10],[0,150],[100,0],[5,20],[0.2,200],[0.2,200],[0.2,200],[1.7,2.7],[0.6,0],[140,40])
+        CurveScl = ([0,10],[0,150],[150,0],[5,20],[0.2,200],[0.2,200],[0.2,200],[1.7,2.7],[0.6,0],[140,40])
         CurveClr = ('white','green','black','blue','blue', 'red', 'black','red','blue','blue')
         
         # Generate format for all chart
