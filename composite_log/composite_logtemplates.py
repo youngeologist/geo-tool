@@ -190,13 +190,13 @@ class LogTemplate:
         self.ax22.set_xscale('log')
         self.ax23.set_xscale('log')
         # ROP label
-        self.ax12.spines['top'].set_position(('outward',25))
-        self.ax13.spines['top'].set_position(('outward',50))
+        self.ax12.spines['top'].set_position(('outward',30))
+        self.ax13.spines['top'].set_position(('outward',60))
         # Deep RES label
-        self.ax22.spines['top'].set_position(('outward',25))
-        self.ax23.spines['top'].set_position(('outward',50))
+        self.ax22.spines['top'].set_position(('outward',30))
+        self.ax23.spines['top'].set_position(('outward',60))
         # Density label
-        self.ax32.spines['top'].set_position(('outward',25))
+        self.ax32.spines['top'].set_position(('outward',30))
         self.ax32.xaxis.grid(which='minor', linestyle='')
         self.ax32.xaxis.grid(which='major', linestyle='')
         
