@@ -197,5 +197,6 @@ class LogTemplate:
         self.ax23.spines['top'].set_position(('outward',50))
         # Density label
         self.ax32.spines['top'].set_position(('outward',25))
-        self.ax32.xaxis.grid(False)
+        self.ax32.xaxis.grid(which='minor', linestyle='')
+        self.ax32.xaxis.grid(which='major', linestyle='')
         
