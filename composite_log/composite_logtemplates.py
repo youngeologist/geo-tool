@@ -90,7 +90,7 @@ class LogTemplate:
         # create density-neutron x-over
         self.ax3.fill_betweenx(
                                self.depth, self.den_syn, self.den, 
-                               where=((self.Den < self.Den_syn) & (self.Den > 1.7)),  
+                               where=((self.den < self.den_syn) & (self.den > 1.7)),  
                                color='yellow', interpolate=True,
                                alpha=0.7,
                                )
