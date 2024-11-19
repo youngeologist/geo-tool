@@ -189,6 +189,7 @@ class LogTemplate:
         #self.ax2.xaxis.set_minor_locator(LogLocator(base=10, subs=np.arange(0.2, 200)))
         self.ax22.set_xscale('log')
         self.ax23.set_xscale('log')
+        
         # ROP label
         self.ax12.spines['top'].set_position(('outward',30))
         self.ax13.spines['top'].set_position(('outward',60))
