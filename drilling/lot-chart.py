@@ -1,3 +1,7 @@
+'Asep Hermawan
+'November 2024
+'LOT/FIT chart interactive visualization
+'-----------------------------------------
 import pandas as pd
 import numpy as np
 import streamlit as st
