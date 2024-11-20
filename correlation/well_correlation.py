@@ -127,7 +127,7 @@ def main():
     flatmarker = st.sidebar.selectbox("Flat log on marker", list(merged_marker['MARKER']))
     FillGR = st.sidebar.selectbox("Fill GR below Shale Base Line?", list(['NO','YES']))
     # ShaleBaseLine = st.sidebar.text_input("Shale Base Line", ShBaseLine)
-    cols = st.columns[4]
+    cols = st.columns(4)
     #ShaleBaseLine = st.sidebar.slider('Shale Base Line', min_value=0, max_value=150, value=75)
     ShaleBaseLine1 = cols[0].slider('Shale Base Line', min_value=0, max_value=150, value=75)
     ShaleBaseLine2 = cols[1].slider('Shale Base Line', min_value=0, max_value=150, value=75)
