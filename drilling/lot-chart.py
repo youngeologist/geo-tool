@@ -54,8 +54,8 @@ def main():
         
     Time0= pd.to_datetime(df[Time_column].min())
     TimeMax = pd.to_datetime(df[Time_column].max())
-    Time1 = Time0.timestamp()-28800 # (UTC+8)
-    TimeMax = TimeMax.timestamp()-28800
+    Time1 = Time0.timestamp()#-28800 # (UTC+8)
+    TimeMax = TimeMax.timestamp()#-28800
     Langkah = (TimeMax - Time1)/3600
     Time1Slider = datetime.datetime.fromtimestamp(Time1)
     TimeMaxSlider = datetime.datetime.fromtimestamp(TimeMax)
