@@ -18,7 +18,6 @@ st.set_page_config(
 )
 
 @st.cache_data
-
 def load_header(welldata):
     header = pd.read_excel(welldata, sheet_name='HEADER', engine='xlrd')
     return header
@@ -61,7 +60,6 @@ def load_gaspeak(welldata):
 #end_function_load_gaspeak
 
 def show_top_sidebar(df):
-     #RTE = st.sidebar.text_input("RTE","28.4")
      # Load the image
      st.sidebar.subheader("WELL DATA", divider=True)
      DepthMode =  st.sidebar.selectbox("Depth MODE", list(['MD','TVD', 'TVDSS']))
@@ -77,7 +75,7 @@ def show_top_sidebar(df):
 # #end_function_show_top_sidebar
 
 def main():
-    image = Image.open('geostrat100.png')
+    image = Image.open('./data/geostrat100.png')
     st.sidebar.image(image)
 
     st.sidebar.subheader("WELL DATA", divider=True)
