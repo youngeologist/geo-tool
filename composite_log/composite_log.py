@@ -130,7 +130,7 @@ def main():
         cols1[2].markdown(f"<h4 style='text-align: right;'>Field: </h4>", unsafe_allow_html=True)
         cols1[3].markdown(f"<h4 style='text-align: left;'>{Field}</h4>", unsafe_allow_html=True)
         cols1[2].markdown(f"<h4 style='text-align: right;'>RTE: </h4>", unsafe_allow_html=True)
-        cols1[3].markdown(f"<h4 style='text-align: left;'>{RTE}m</h4>", unsafe_allow_html=True)
+        cols1[3].markdown(f"<h4 style='text-align: left;'>{RTE}{Unit}</h4>", unsafe_allow_html=True)
     st.markdown("""<hr style="height:2px;border-width:0;color:blue;background-color:gray">""", unsafe_allow_html=True)
     
     #st.write(judul)
