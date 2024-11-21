@@ -12,7 +12,7 @@ from matplotlib.ticker import (MultipleLocator, FormatStrFormatter, AutoMinorLoc
 
 class Korelasi:
     def __init__(self, panjang, lebar, judul, top, bottom, majortick, minortick):
-        self.fontWellName = 20
+        self.fontWellName = 30
         self.fontMarkerName = 12
         self.panjang = panjang
         self.lebar = lebar
