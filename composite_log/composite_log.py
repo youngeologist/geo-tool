@@ -81,7 +81,7 @@ def main():
     st.sidebar.subheader("WELL DATA", divider=True)
     welldata = st.sidebar.file_uploader("Upload Preformated XLS well data file")
     if welldata is None:
-       welldata = './data/asep01-welldata.xls'
+       welldata = './data/asep03-welldata.xls'
     
     header = load_header(welldata)
     df = load_logdata(welldata)
