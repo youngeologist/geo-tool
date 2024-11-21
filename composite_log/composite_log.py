@@ -69,8 +69,6 @@ def show_top_sidebar(df):
      max = int(df['DEPTH'].max())
      Depth_min = st.sidebar.slider('Top Log', min_value=min, max_value=max-100, value=min)
      Depth_max = st.sidebar.slider('Bottom Log', min_value=min+100, max_value=max, value=min+1000)
-     #Depth_min = st.sidebar.text_input("Top", min)
-     #Depth_max = st.sidebar.text_input("Bottom", max)
      return DepthMode, Skala, Depth_min, Depth_max
 # #end_function_show_top_sidebar
 
@@ -100,6 +98,9 @@ def main():
             " - Scale 1:"+str(Skala))
     Depth_min = int(Depth_min)
     Depth_max = int(Depth_max)
+    if Depth_max <= Depth_min:
+        st.write('Bottom log must be greater than Top log....app reset bottom log')
+        Depth_max = Depth_min+500
     skala = float(Skala)
     RTE = float(RTE)
    
