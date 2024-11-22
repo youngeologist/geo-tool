@@ -105,7 +105,7 @@ def main():
 
     # Set y-axes titles
     fig.update_yaxes(title_text="<b>Pressure</b> (psi)", secondary_y=False)
-    fig.update_yaxes(title_text="<b>Volume pumping</b> (bbls)", secondary_y=True)
+    fig.update_yaxes(title_text="<b>Pumping Volume</b> (bbls)", secondary_y=True)
 
     # Show chart
     first_chart = go.Scatter(x=df[Time_column], y=df[Pressure], name=Pressure, line=dict(color='blue', width=2))
