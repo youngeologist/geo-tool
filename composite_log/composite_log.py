@@ -63,7 +63,7 @@ def show_top_sidebar(df):
      # Load the image
      st.sidebar.subheader("WELL DATA", divider=True)
      DepthMode =  st.sidebar.selectbox("Depth MODE", list(['MD','TVD', 'TVDSS']))
-     st.sidebar.write("Adjust Scale, Top or Bottom log, if viewer ERROR due to unable creating large image")
+     st.sidebar.write("Adjust Scale, Top or Bottom log, if viewer ERROR due to unable creating long image")
      Skala = st.sidebar.selectbox("Scale", list([1000,500,200]))
      min = int(df['DEPTH'].min())
      max = int(df['DEPTH'].max())
