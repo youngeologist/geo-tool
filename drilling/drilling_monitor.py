@@ -14,7 +14,7 @@ st.set_page_config(
 
 def load_drillingdata(welldata):
     drl = pd.read_excel(welldata, engine='xlrd')
-    df = drl.fillna(method='ffill')            
+    df = drl.ffill()            
     return df 
 #end_function_load_drillingdata
 

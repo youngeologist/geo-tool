@@ -22,7 +22,7 @@ st.set_page_config(
 @st.cache_data
 def load_data(welldata):
     df = pd.read_excel(welldata, engine='xlrd')
-    df = df.fillna(method='ffill')
+    df = df.ffill()
     return df
 
 #end_function_load_data

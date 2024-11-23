@@ -160,12 +160,12 @@ def CalculateSurvey(df, RTE, AZVS):
 def main():
     # st.header("LOT Chart")
     ChartTitle ="ASEP-01 Well Profile"
-    image = Image.open('../data/geostrat100.png')
+    image = Image.open('./data/geostrat100.png')
     st.sidebar.image(image)
 
     welldata = st.sidebar.file_uploader("Upload Survey data (XLS file only)")
     if welldata is None:
-        welldata = '../data/asep01-surveydata.xls'
+        welldata = './data/asep01-surveydata.xls'
 
     df = load_data(welldata)
     dfplan = load_plan(welldata)

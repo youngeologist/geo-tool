@@ -19,19 +19,19 @@ st.set_page_config(
 # baca file data
 def load_header(welldata):
     header = pd.read_excel(welldata, sheet_name='HEADER')
-    header = header.fillna(method='ffill')
+    header = header.ffill()
     return header
 #end_function_load_header
 
 def load_logdata(welldata):
     dflog = pd.read_excel(welldata, sheet_name='LOGDATA')
-    df = dflog.fillna(method='ffill')            
+    df = dflog.ffill()            
     return df 
 #end_function_load_lwddata
 
 def load_marker(welldata):
     marker = pd.read_excel(welldata, sheet_name='MARKER')
-    marker = marker.fillna(method='ffill')
+    marker = marker.ffill()
     return marker
 #end_function_load_marker
 
@@ -60,30 +60,30 @@ def flat_depth(marker, marker1, marker2, marker3, marker4):
 #end_function_flat_depth
 
 def main():
-    image = Image.open('../data/geostrat100.png')
+    image = Image.open('./data/geostrat100.png')
     st.sidebar.image(image)
     # read log data
     welldata01 = st.sidebar.file_uploader("Upload Well-1 file")
     if welldata01 is None:
-       welldata01 = '../data/dummy01_correlation.xls'
+       welldata01 = './data/dummy01_correlation.xls'
     WellName1 = load_header(welldata01)
     wellname1 = WellName1.iloc[0]
 
     welldata02 = st.sidebar.file_uploader("Upload Well-2 file")
     if welldata02 is None:
-       welldata02 = '../data/dummy02_correlation.xls'
+       welldata02 = './data/dummy02_correlation.xls'
     WellName2 = load_header(welldata02)
     wellname2 = WellName2.iloc[0]
 
     welldata03 = st.sidebar.file_uploader("Upload Well-3 file")
     if welldata03 is None:
-       welldata03 = '../data/dummy03_correlation.xls'
+       welldata03 = './data/dummy03_correlation.xls'
     WellName3 = load_header(welldata03)
     wellname3 = WellName3.iloc[0]
 
     welldata04 = st.sidebar.file_uploader("Upload Well-4 file")
     if welldata04 is None:
-       welldata04 = '../data/dummy04_correlation.xls'
+       welldata04 = './data/dummy04_correlation.xls'
     WellName4 = load_header(welldata04)
     wellname4 = WellName4.iloc[0]
         
