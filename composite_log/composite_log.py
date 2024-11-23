@@ -73,13 +73,13 @@ def show_top_sidebar(df):
 # #end_function_show_top_sidebar
 
 def main():
-    image = Image.open('data/geostrat100.png')
+    image = Image.open('/data/geostrat100.png')
     st.sidebar.image(image)
 
     st.sidebar.subheader("WELL DATA", divider=True)
     welldata = st.sidebar.file_uploader("Upload Pre-formated XLS well data file")
     if welldata is None:
-       welldata = 'data/asep03-welldata.xls'
+       welldata = '/data/asep03-welldata.xls'
     
     header = load_header(welldata)
     df = load_logdata(welldata)
