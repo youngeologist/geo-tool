@@ -21,17 +21,17 @@ st.set_page_config(
 @st.cache_data
 def load_header(welldata):
     header = pd.read_excel(welldata, sheet_name='HEADER', engine='xlrd')
-    header = header.fillna(method='ffill')
+    header = header.ffill()
     return header
 #end_function_load_header
 def load_data(welldata):
     df = pd.read_excel(welldata, sheet_name='SURVEY', engine='xlrd')
-    df = df.fillna(method='ffill')
+    df = df.ffill()
     return df
 #end_function_load_data
 def load_plan(welldata):
     plan = pd.read_excel(welldata, sheet_name='PLAN', engine='xlrd')
-    plan = plan.fillna(method='ffill')
+    plan = plan.ffill()
     return plan
 #end_function_load_plan
 
@@ -160,12 +160,12 @@ def CalculateSurvey(df, RTE, AZVS):
 def main():
     # st.header("LOT Chart")
     ChartTitle ="ASEP-01 Well Profile"
-    image = Image.open('geostrat100.png')
+    image = Image.open('../data/geostrat100.png')
     st.sidebar.image(image)
 
     welldata = st.sidebar.file_uploader("Upload Survey data (XLS file only)")
     if welldata is None:
-        welldata = './data/asep01-surveydata.xls'
+        welldata = '../data/asep01-surveydata.xls'
 
     df = load_data(welldata)
     dfplan = load_plan(welldata)
@@ -175,8 +175,8 @@ def main():
     WellName = headerdata['WELLNAME']
     RTE = headerdata['RTE']
     VSAZ = headerdata['VSAZ']
-    Easting = headerdata['EASTING']
-    Northing = headerdata['NORTHING']
+    SURFACEX = headerdata['SURFACEX']
+    SURFACEY = headerdata['SURFACEY']
 
     ChartTitle = st.sidebar.text_input("Chart Title", ChartTitle)
     

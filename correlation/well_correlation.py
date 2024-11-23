@@ -60,30 +60,30 @@ def flat_depth(marker, marker1, marker2, marker3, marker4):
 #end_function_flat_depth
 
 def main():
-    image = Image.open('./data/geostrat100.png')
+    image = Image.open('../data/geostrat100.png')
     st.sidebar.image(image)
     # read log data
     welldata01 = st.sidebar.file_uploader("Upload Well-1 file")
     if welldata01 is None:
-       welldata01 = './data/dummy01_correlation.xls'
+       welldata01 = '../data/dummy01_correlation.xls'
     WellName1 = load_header(welldata01)
     wellname1 = WellName1.iloc[0]
 
     welldata02 = st.sidebar.file_uploader("Upload Well-2 file")
     if welldata02 is None:
-       welldata02 = './data/dummy02_correlation.xls'
+       welldata02 = '../data/dummy02_correlation.xls'
     WellName2 = load_header(welldata02)
     wellname2 = WellName2.iloc[0]
 
     welldata03 = st.sidebar.file_uploader("Upload Well-3 file")
     if welldata03 is None:
-       welldata03 = './data/dummy03_correlation.xls'
+       welldata03 = '../data/dummy03_correlation.xls'
     WellName3 = load_header(welldata03)
     wellname3 = WellName3.iloc[0]
 
     welldata04 = st.sidebar.file_uploader("Upload Well-4 file")
     if welldata04 is None:
-       welldata04 = './data/dummy04_correlation.xls'
+       welldata04 = '../data/dummy04_correlation.xls'
     WellName4 = load_header(welldata04)
     wellname4 = WellName4.iloc[0]
         
@@ -113,7 +113,7 @@ def main():
     FillGR = 'NO'
     ShBaseLine = 75
     #------------------------
-    skala = st.sidebar.selectbox("Set Scale", list([1000,500,200]))
+    skala = st.sidebar.selectbox("Set Scale", list([1000,500]))
     mindepth = st.sidebar.text_input("Top", min)
     maxdepth = st.sidebar.text_input("Bottom", max)
     mindepth = int(mindepth)  
@@ -155,10 +155,10 @@ def main():
        delta1, delta2, delta3 = flat_depth(flatmarker, marker1, marker2, marker3, marker4)
 
     korelasi = Korelasi(panjang,lebar,'Marker Correlation', mindepth, maxdepth, majortick, minortick)
-    korelasi.mainwell(wellname1['WELLNAME'], mindepth, maxdepth, welldata1, marker1, FillGR, ShaleBaseLine1)
-    korelasi.secondwell(wellname2['WELLNAME'], mindepth, maxdepth, delta1, welldata2, marker2, FillGR, ShaleBaseLine2)
-    korelasi.thirdwell(wellname3['WELLNAME'], mindepth, maxdepth, delta2, welldata3, marker3, FillGR, ShaleBaseLine3)
-    korelasi.fourthwell(wellname4['WELLNAME'], mindepth, maxdepth, delta3, welldata4, marker4, FillGR, ShaleBaseLine4)
+    korelasi.mainwell(wellname1['WELLNAME'], float(wellname1['RTE']), mindepth, maxdepth, welldata1, marker1, FillGR, ShaleBaseLine1)
+    korelasi.secondwell(wellname2['WELLNAME'], float(wellname2['RTE']), mindepth, maxdepth, delta1, welldata2, marker2, FillGR, ShaleBaseLine2)
+    korelasi.thirdwell(wellname3['WELLNAME'], float(wellname3['RTE']), mindepth, maxdepth, delta2, welldata3, marker3, FillGR, ShaleBaseLine3)
+    korelasi.fourthwell(wellname4['WELLNAME'], float(wellname4['RTE']), mindepth, maxdepth, delta3, welldata4, marker4, FillGR, ShaleBaseLine4)
     lines1 = create_correlation(marker1, marker2, 0, delta1)
     lines2 = create_correlation(marker2, marker3, delta1, delta2)
     lines3 = create_correlation(marker3, marker4, delta2, delta3)

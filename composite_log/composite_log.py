@@ -25,37 +25,37 @@ def load_header(welldata):
 
 def load_logdata(welldata):
     lwd = pd.read_excel(welldata, sheet_name='LOGDATA', engine='xlrd')
-    df = lwd.fillna(method='ffill')            
+    df = lwd.ffill()           
     return df 
 #end_function_load_logdata
 
 def load_mudlog(welldata):
     mudlog = pd.read_excel(welldata, sheet_name='GASDATA', engine='xlrd')
-    mudlog = mudlog.fillna(method='ffill')  
+    mudlog = mudlog.ffill() 
     return mudlog
 #end_function_load_mudlog
 
 def load_marker(welldata):
     marker = pd.read_excel(welldata, sheet_name='MARKER', engine='xlrd')
-    marker = marker.fillna(method='ffill')  
+    marker = marker.ffill() 
     return marker
 #end_function_load_marker
 
 def load_survey(welldata):
     survey = pd.read_excel(welldata, sheet_name='SURVEY', engine='xlrd')
-    survey = survey.fillna(method='ffill')  
+    survey = survey.ffill() 
     return survey
 #end_function_load_survey
 
 def load_fluid(welldata):
     fluid = pd.read_excel(welldata, sheet_name='FLUID', engine='xlrd')
-    fluid = fluid.fillna(method='ffill')  
+    fluid = fluid.ffill() 
     return fluid
 #end_function_load_fluid
 
 def load_gaspeak(welldata):
     gaspeak = pd.read_excel(welldata, sheet_name='GASPEAK', engine='xlrd')
-    gaspeak = gaspeak.fillna(method='ffill')  
+    gaspeak = gaspeak.ffill() 
     return gaspeak
 #end_function_load_gaspeak
 
@@ -73,13 +73,13 @@ def show_top_sidebar(df):
 # #end_function_show_top_sidebar
 
 def main():
-    image = Image.open('./data/geostrat100.png')
+    image = Image.open('../data/geostrat100.png')
     st.sidebar.image(image)
 
     st.sidebar.subheader("WELL DATA", divider=True)
-    welldata = st.sidebar.file_uploader("Upload Preformated XLS well data file")
+    welldata = st.sidebar.file_uploader("Upload Pre-formated XLS well data file")
     if welldata is None:
-       welldata = './data/asep03-welldata.xls'
+       welldata = '../data/asep03-welldata.xls'
     
     header = load_header(welldata)
     df = load_logdata(welldata)

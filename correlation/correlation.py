@@ -86,13 +86,13 @@ class Korelasi:
         self.ax40.yaxis.grid(which='minor', linestyle='')
         self.ax40.yaxis.grid(which='major', linestyle='') 
         
-    def mainwell(self, WellName, top, bottom, df_log, df_marker, FillGR, ShBaseLine):
+    def mainwell(self, WellName, RTE, top, bottom, df_log, df_marker, FillGR, ShBaseLine):
         self.top = top
-        self.bottom = bottom  
+        self.bottom = bottom 
         self.WellName = WellName
-        self.depth = df_log['TVDSS']
+        self.depth = df_log['TVD']-RTE
         self.GR = df_log['GR']
-        self.Res = df_log['RT']
+        self.Res = df_log['RESDP']
         self.Den = df_log['DEN']
         self.Neu = df_log['NEU']
         self.Den_syn = (0.6-self.Neu)/0.6+1.7
@@ -129,13 +129,13 @@ class Korelasi:
             if row['TVDSS'] > self.top and row['TVDSS'] < self.bottom:
                   self.ax12.text(0.3, row['TVDSS']-1, row['MARKER'], color='red', fontsize=self.fontMarkerName)
 
-    def secondwell(self, WellName, top, bottom, delta, df_log, df_marker, FillGR, ShBaseLine):
+    def secondwell(self, WellName, RTE, top, bottom, delta, df_log, df_marker, FillGR, ShBaseLine):
         self.top = top
         self.bottom = bottom
         self.WellName = WellName
-        self.depth = df_log['TVDSS'] 
+        self.depth = df_log['TVD']-RTE
         self.GR = df_log['GR']
-        self.Res = df_log['RT']
+        self.Res = df_log['RESDP']
         self.Den = df_log['DEN']
         self.Neu = df_log['NEU']
         self.Den_syn = (0.6-self.Neu)/0.6+1.7
@@ -183,13 +183,13 @@ class Korelasi:
             if row['TVDSS'] > self.top+delta and row['TVDSS'] < self.bottom+delta:
                   self.ax22.text(0.3, row['TVDSS']-1, row['MARKER'], color='red', fontsize=self.fontMarkerName)
 
-    def thirdwell(self, WellName, top, bottom, delta, df_log, df_marker, FillGR, ShBaseLine):
+    def thirdwell(self, WellName, RTE, top, bottom, delta, df_log, df_marker, FillGR, ShBaseLine):
         self.top = top
-        self.bottom = bottom
+        self.bottom = bottom  
         self.WellName = WellName
-        self.depth = df_log['TVDSS']
+        self.depth = df_log['TVD']-RTE
         self.GR = df_log['GR']
-        self.Res = df_log['RT']
+        self.Res = df_log['RESDP']
         self.Den = df_log['DEN']
         self.Neu = df_log['NEU']
         self.Den_syn = (0.6-self.Neu)/0.6+1.7
@@ -238,13 +238,13 @@ class Korelasi:
                   self.ax32.text(0.3, row['TVDSS']-1, row['MARKER'], color='red', fontsize=self.fontMarkerName)
     #end_function_thirdwell
 
-    def fourthwell(self, WellName, top, bottom, delta, df_log, df_marker, FillGR, ShBaseLine):
+    def fourthwell(self, WellName, RTE, top, bottom, delta, df_log, df_marker, FillGR, ShBaseLine):
         self.top = top
-        self.bottom = bottom
+        self.bottom = bottom 
         self.WellName = WellName
-        self.depth = df_log['TVDSS']
+        self.depth = df_log['TVD']-RTE
         self.GR = df_log['GR']
-        self.Res = df_log['RT']
+        self.Res = df_log['RESDP']
         self.Den = df_log['DEN']
         self.Neu = df_log['NEU']
         self.Den_syn = (0.6-self.Neu)/0.6+1.7
